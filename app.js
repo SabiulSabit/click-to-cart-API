@@ -5,6 +5,9 @@ require('dotenv').config();
 //app
 const app = express();
 
+// import all router
+const userRouter = require('./routes/user')
+
 //connect to db
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
@@ -18,10 +21,10 @@ mongoose.connect(process.env.DATABASE, {
 
 
 //routing
-app.get('/', (req,res,next)=>{
-    res.send("hello world")
-})
+app.use('/api', userRouter);
 
+
+//run
 const port = process.env.PORT || 8000 ;
 app.listen(port, ()=>{
     console.log("Server is Running on Port: "+port);
