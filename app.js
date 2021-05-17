@@ -1,5 +1,7 @@
 const express =  require('express');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser')
 require('dotenv').config();
 
 //app
@@ -18,6 +20,11 @@ mongoose.connect(process.env.DATABASE, {
 } )
    
 
+//middleware
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(cookieParser());
 
 
 //routing

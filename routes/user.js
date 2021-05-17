@@ -4,7 +4,7 @@ const router = express.Router();
 //get controllers
 const userController = require('../controllers/user');
 
-router.route('/')
-    .get(userController.sayhi);
+router.route('/signup')
+    .post(userController.signup);
 
 module.exports = router;    
