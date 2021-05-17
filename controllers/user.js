@@ -12,6 +12,9 @@ exports.signup = (req,res,next) =>{
                 err: errorHandler(err)
             })
         }
+
+        user.salt = undefined;
+        user.hashPassword = undefined;
         return res.json({
             user
         })
