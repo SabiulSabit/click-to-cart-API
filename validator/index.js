@@ -1,0 +1,4 @@
+
+exports.userSignupVlidator = (req,res) =>{
+    
+}
