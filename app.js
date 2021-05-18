@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 
 // import all router
-const userRouter = require('./routes/user')
+const authRouter = require('./routes/auth')
 
 //connect to db
 mongoose.connect(process.env.DATABASE, {
@@ -30,7 +30,7 @@ app.use(expreesValidator());
 
 
 //routing
-app.use('/api', userRouter);
+app.use('/api', authRouter);
 
 
 //run

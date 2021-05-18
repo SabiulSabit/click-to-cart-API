@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 //get controllers
-const userController = require('../controllers/user');
+const userController = require('../controllers/auth');
 const validator = require('../validator/index')
 
 
@@ -14,5 +14,6 @@ router.route('/signin')
 
 router.route('/signout')
     .get(userController.signout)    
+
 
 module.exports = router;    
