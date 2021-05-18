@@ -59,3 +59,8 @@ exports.signup = (req,res,next) =>{
 
     })
  }
+
+ //user signout
+ exports.signout = (req,res,next) =>{
+     
+ }
