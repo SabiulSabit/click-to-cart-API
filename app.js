@@ -10,6 +10,7 @@ const app = express();
 
 // import all router
 const authRouter = require('./routes/auth')
+const userRouter = require('./routes/user')
 
 //connect to db
 mongoose.connect(process.env.DATABASE, {
@@ -31,6 +32,7 @@ app.use(expreesValidator());
 
 //routing
 app.use('/api', authRouter);
+app.use('/api', userRouter)
 
 
 //run
