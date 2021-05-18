@@ -2,18 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 //get controllers
-const userController = require('../controllers/auth');
+const authController = require('../controllers/auth');
 const validator = require('../validator/index')
 
 
 router.route('/signup')
-    .post(validator.userSignupVlidator, userController.signup);
+    .post(validator.userSignupVlidator, authController.signup);
 
 router.route('/signin')
-    .post(userController.signin);    
+    .post(authController.signin);    
 
 router.route('/signout')
-    .get(userController.signout)    
+    .get(authController.signout)    
 
 
 module.exports = router;    
