@@ -75,7 +75,9 @@ exports.requireSignin = expressJWT({
 })
 
 exports.isAuth = (req,res,next) =>{
-    let user = req.profile && req.auth && req.profile._id === req.auth._id;
+    let user = req.profile && req.auth && req.profile._id == req.auth.id;
+
+    //console.log(req.profile,  req.auth );
     if(!user){
         return res.status(403).json({
             error: "Access Denied"
