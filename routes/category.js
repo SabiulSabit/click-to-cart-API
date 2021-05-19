@@ -3,10 +3,15 @@ const router = express.Router();
 
 //get controllers
 const categoryController = require('../controllers/category');
+const authController = require('../controllers/auth');
+const userController = require('../controllers/user');
 
 
-router.route('/category')
-    .post(categoryController.create);
+router.route('/category/create/:userId')
+    .post(authController.requireSignin, authController.isAuth, authController.isAdmin,categoryController.create);
+
+router.param('userId', userController.userByID)    
+
 
 
 module.exports = router;    
