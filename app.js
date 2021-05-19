@@ -12,6 +12,7 @@ const app = express();
 const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 const categoryRouter = require('./routes/category')
+const productRouter = require('./routes/product')
 
 //connect to db
 mongoose.connect(process.env.DATABASE, {
@@ -35,7 +36,7 @@ app.use(expreesValidator());
 app.use('/api', authRouter);
 app.use('/api', userRouter)
 app.use('/api', categoryRouter);
-
+app.use('/api',productRouter);
 
 //run
 const port = process.env.PORT || 8000 ;
