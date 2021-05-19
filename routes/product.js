@@ -8,7 +8,7 @@ const authController = require('../controllers/auth');
 
 
 router.route('/product/create/:userId')
-    .post(authController.requireSignin, authController.isAuth, authController.isAdmin,categoryController.create);
+    .post(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.create);
 
 router.param('userId', userController.userByID)    
 
