@@ -17,3 +17,8 @@ exports.create = (req, res,next) =>{
    })
 
 }
+
+//get category by id
+exports.categoryByID = (req,res,next) =>{
+    
+}
