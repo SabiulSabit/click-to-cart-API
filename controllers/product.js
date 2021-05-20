@@ -72,3 +72,8 @@ exports.create = (req,res,next) =>{
         })
     })
 }
+
+//remove product
+exports.remove = (req,res,next) =>{
+    
+}

@@ -13,6 +13,9 @@ router.route('/product/create/:userId')
 router.route('/product/:productId')
     .get(productController.read)
 
+router.route('/product/:productId/:userId', authController.requireSignin, authController.isAuth, authController.isAdmin,productController.remove)
+
+
 router.param('userId', userController.userByID)    
 router.param('productId', productController.productByID)    
 
