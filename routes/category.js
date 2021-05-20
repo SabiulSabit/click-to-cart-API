@@ -15,6 +15,16 @@ router
     categoryController.create
   );
 
+  router
+  .route("/category/:categoryId/:userId")
+  .put(
+    authController.requireSignin,
+    authController.isAuth,
+    authController.isAdmin,
+    categoryController.update
+  );
+  
+
 router.route('/category/:categoryId')
     .get(categoryController.read)
 

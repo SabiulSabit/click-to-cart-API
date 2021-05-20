@@ -23,6 +23,11 @@ exports.read = (req,res,next) =>{
     return res.json(req.category);
 }
 
+//update category
+exports.update = (req,res,next) =>{
+    
+}
+
 //get category by id
 exports.categoryByID = (req,res,next, id) =>{
     Category.findById(id).exec((err, category)=>{
