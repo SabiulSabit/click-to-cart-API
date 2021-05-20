@@ -30,6 +30,11 @@ exports.update = (req,res,next) =>{
 
 //delete category
 exports.delete = (req,res,next) =>{
+
+}
+
+//get all category
+exports.readall = (req,res,next) =>{
     
 }
 
