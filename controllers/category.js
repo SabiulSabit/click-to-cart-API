@@ -6,7 +6,7 @@ exports.create = (req, res,next) =>{
    const category = new Category(req.body);
    category.save((err,data)=>{
         if(err){
-            return res.status(4004).json({
+            return res.status(404).json({
                 error: errorHandler(err),
             })
         }
@@ -25,7 +25,17 @@ exports.read = (req,res,next) =>{
 
 //update category
 exports.update = (req,res,next) =>{
+    const category = req.category;
+    category.name = req.body.name;
 
+    category.save((err,result)=>{
+        if(err){
+            return res.status(400).json({
+                error: errorHandler(err),
+            })
+        }
+        return res.json(data);
+    });
 }
 
 //delete category
