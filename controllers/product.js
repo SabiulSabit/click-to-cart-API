@@ -75,5 +75,15 @@ exports.create = (req,res,next) =>{
 
 //remove product
 exports.remove = (req,res,next) =>{
-    
+    let product = req.product;
+    product.remove((err,result)=>{
+        if(err){
+            return res.status(400).json({
+                error: errorHandler(err)
+            })
+        }
+        return res.json({
+            "message": "Prodcut deleted Successfully"
+        })
+    })
 }
