@@ -87,3 +87,8 @@ exports.remove = (req,res,next) =>{
         })
     })
 }
+
+//update product
+exports.update = (req,res,next) =>{
+    
+}

@@ -14,7 +14,11 @@ router.route('/product/:productId')
     .get(productController.read)
 
 router.route('/product/:productId/:userId')
-    .delete(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.remove)
+    .delete(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.remove);
+
+
+router.route('/product/:productId/:userId')
+    .put(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.update)    
 
 
 router.param('userId', userController.userByID)    
