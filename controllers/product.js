@@ -20,6 +20,11 @@ exports.productByID = (req,res,next, id) =>{
     })
 }
 
+//get product
+exports.read = (req,res,next)=>{
+        req.product.photo =  undefined;
+        return res.json(req.product)
+}
 
 //create product
 exports.create = (req,res,next) =>{

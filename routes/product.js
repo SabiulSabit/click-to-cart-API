@@ -10,6 +10,9 @@ const authController = require('../controllers/auth');
 router.route('/product/create/:userId')
     .post(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.create);
 
+router.route('/product/:productId')
+    .get(productController.read)
+
 router.param('userId', userController.userByID)    
 router.param('productId', productController.productByID)    
 
