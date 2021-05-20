@@ -3,7 +3,25 @@ const {errorHandler} = require('../helpers/dbErrorHandler');
 const  formidable = require('formidable');
 const fs = require('fs');
 const _ = require('lodash');
+const { exec } = require('child_process');
 
+
+//get product by id
+exports.productByID = (req,res,next, id) =>{
+    Product.findById(id).exec((err,product)=>{
+        if(err || !product){
+            return res.status(400).json({
+                error: "Product not Found !"
+            })
+        }
+
+        req.product = product;
+        next();
+    })
+}
+
+
+//create product
 exports.create = (req,res,next) =>{
     let form = new formidable.IncomingForm();
 

@@ -11,5 +11,6 @@ router.route('/product/create/:userId')
     .post(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.create);
 
 router.param('userId', userController.userByID)    
+router.param('productId', productController.productByID)    
 
 module.exports = router;    
