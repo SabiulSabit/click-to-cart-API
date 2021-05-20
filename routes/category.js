@@ -15,7 +15,7 @@ router
     categoryController.create
   );
 
-  router
+router
   .route("/category/:categoryId/:userId")
   .put(
     authController.requireSignin,
@@ -23,10 +23,17 @@ router
     authController.isAdmin,
     categoryController.update
   );
-  
 
-router.route('/category/:categoryId')
-    .get(categoryController.read)
+router
+  .route("/category/:categoryId/:userId")
+  .delete(
+    authController.requireSignin,
+    authController.isAuth,
+    authController.isAdmin,
+    categoryController.delete 
+  );  
+
+router.route("/category/:categoryId").get(categoryController.read);
 
 router.param("categoryId", categoryController.categoryByID);
 router.param("userId", userController.userByID);

@@ -25,6 +25,11 @@ exports.read = (req,res,next) =>{
 
 //update category
 exports.update = (req,res,next) =>{
+
+}
+
+//delete category
+exports.delete = (req,res,next) =>{
     
 }
 
