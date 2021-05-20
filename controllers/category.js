@@ -34,7 +34,7 @@ exports.update = (req,res,next) =>{
                 error: errorHandler(err),
             })
         }
-        return res.json(data);
+        return res.json(result);
     });
 }
 
