@@ -40,7 +40,18 @@ exports.update = (req,res,next) =>{
 
 //delete category
 exports.delete = (req,res,next) =>{
+    const category = req.category;
 
+    category.remove((err,result)=>{
+        if(err){
+            return res.status(400).json({
+                error: errorHandler(err),
+            })
+        }
+        return res.json({
+            message:  "Category deleted Successfully"
+        });
+    });
 }
 
 //get all category
