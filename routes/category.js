@@ -15,6 +15,9 @@ router
     categoryController.create
   );
 
+router.route('/category/:categoryId')
+    .get(categoryController.read)
+
 router.param("categoryId", categoryController.categoryByID);
 router.param("userId", userController.userByID);
 

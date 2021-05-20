@@ -18,12 +18,17 @@ exports.create = (req, res,next) =>{
 
 }
 
+//get category info
+exports.read = (req,res,next) =>{
+    return res.json(req.category);
+}
+
 //get category by id
 exports.categoryByID = (req,res,next, id) =>{
     Category.findById(id).exec((err, category)=>{
-        if(err|| !category){
-            return res.status(4004).json({
-                error: errorHandler(err),
+        if(err || !category){
+            return res.status(400).json({
+                error: "Category does not exist"
             })
         }
 
