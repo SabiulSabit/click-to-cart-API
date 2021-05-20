@@ -56,7 +56,14 @@ exports.delete = (req,res,next) =>{
 
 //get all category
 exports.readall = (req,res,next) =>{
-    
+    Category.find().exec((err,result)=>{
+        if(err){
+            return res.status(400).json({
+                error: errorHandler(err),
+            })
+        }
+        return res.json(result);
+    })
 }
 
 //get category by id
