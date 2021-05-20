@@ -19,6 +19,15 @@ exports.create = (req, res,next) =>{
 }
 
 //get category by id
-exports.categoryByID = (req,res,next) =>{
-    
+exports.categoryByID = (req,res,next, id) =>{
+    Category.findById(id).exec((err, category)=>{
+        if(err|| !category){
+            return res.status(4004).json({
+                error: errorHandler(err),
+            })
+        }
+
+        req.category = category;
+        next();
+    })
 }
