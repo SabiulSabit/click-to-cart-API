@@ -152,7 +152,7 @@ exports.getAll = (req, res, next) => {
   //filter field data
   let order = req.query.order ? req.query.order : "asc";
   let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
-  let limit = req.query.limit ? req.query.limit : 6;
+  let limit = req.query.limit ? parseInt(req.query.limit) : 6;
 
   Product.find()
     .select("-photo")
@@ -168,3 +168,9 @@ exports.getAll = (req, res, next) => {
         return res.send(products);
     });
 };
+
+
+/// get related product
+exports.listRelated = (req,res,next) =>{
+    
+}
