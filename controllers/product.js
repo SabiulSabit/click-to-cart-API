@@ -159,18 +159,29 @@ exports.getAll = (req, res, next) => {
     .populate("category")
     .sort([[sortBy, order]])
     .limit(limit)
-    .exec((err,products)=>{
-        if(err){
-            return res.status(400).json({
-                error: "Products not Found"
-            })
-        }
-        return res.send(products);
+    .exec((err, products) => {
+      if (err) {
+        return res.status(400).json({
+          error: "Products not Found",
+        });
+      }
+      return res.send(products);
     });
 };
 
-
 /// get related product
-exports.listRelated = (req,res,next) =>{
-    
-}
+exports.listRelated = (req, res, next) => {
+  let limit = req.query.limit ? parseInt(req.query.limit) : 6;
+
+  Product.find({ _id: { $ne: req.product }, category: req.product.category })
+    .limit(limit)
+    .populate("category", "_id name")
+    .exec((err, products) => {
+        if (err) {
+            return res.status(400).json({
+              error: "Products not Found",
+            });
+          }
+          return res.send(products);
+    });
+};
