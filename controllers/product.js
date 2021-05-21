@@ -135,3 +135,6 @@ exports.update = (req,res,next) =>{
         })
     })
 }
+
+
+//sell // arrival 
