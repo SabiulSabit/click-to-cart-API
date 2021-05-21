@@ -25,7 +25,10 @@ router.route('/products')
     .get(productController.getAll)  
     
 router.route('/products/related/:productId')
-    .get(productController.listRelated)    
+    .get(productController.listRelated)
+    
+router.route('/products/categories')
+    .get(productController.allCategory)    
 
 
 router.param('userId', userController.userByID)    

@@ -185,3 +185,9 @@ exports.listRelated = (req, res, next) => {
           return res.send(products);
     });
 };
+
+
+//get all category
+exports.allCategory = (req,res,next) =>{
+  
+}
