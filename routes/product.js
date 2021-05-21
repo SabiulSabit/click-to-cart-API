@@ -18,7 +18,11 @@ router.route('/product/:productId/:userId')
 
 
 router.route('/product/:productId/:userId')
-    .put(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.update)    
+    .put(authController.requireSignin, authController.isAuth, authController.isAdmin,productController.update)
+    
+    
+router.route('/products')
+    .get(productController.getAll)    
 
 
 router.param('userId', userController.userByID)    

@@ -137,4 +137,10 @@ exports.update = (req,res,next) =>{
 }
 
 
-//sell // arrival 
+//sell // arrival
+
+
+//get all product
+exports.getAll = (req,res,next) =>{
+    
+}
