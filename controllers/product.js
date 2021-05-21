@@ -177,17 +177,30 @@ exports.listRelated = (req, res, next) => {
     .limit(limit)
     .populate("category", "_id name")
     .exec((err, products) => {
-        if (err) {
-            return res.status(400).json({
-              error: "Products not Found",
-            });
-          }
-          return res.send(products);
+      if (err) {
+        return res.status(400).json({
+          error: "Products not Found",
+        });
+      }
+      return res.send(products);
     });
 };
 
-
 //get all category
-exports.allCategory = (req,res,next) =>{
+exports.allCategory = (req, res, next) => {
+  Product.distinct("category", {}, (err, category) => {
+    if (err) {
+      return res.status(400).json({
+        error: "Categorys not Found",
+      });
+    }
+
+    return res.json(category);
+  });
+};
+
+
+// get search prodcut date
+exports.searchData = (req,res,next) =>{
   
 }

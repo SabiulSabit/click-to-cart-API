@@ -30,6 +30,8 @@ router.route('/products/related/:productId')
 router.route('/products/categories')
     .get(productController.allCategory)    
 
+router.route('/products/by/search', productController.searchData)    
+
 
 router.param('userId', userController.userByID)    
 router.param('productId', productController.productByID)    
