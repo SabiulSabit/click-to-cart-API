@@ -17,10 +17,14 @@ exports.userByID = (req,res,next, id) =>{
 
 //read user data
 exports.getReadUser = (req,res,next) =>{
+     req.profile.hashPassword = undefined;
+     req.profile.salt = undefined;
+
+     return res.json(req.profile);
 
 }
 
 //update user
 exports.putUpdateUser = (req,res,next) =>{
-    
+
 }
