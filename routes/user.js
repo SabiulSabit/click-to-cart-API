@@ -14,6 +14,7 @@ router.get('/secret/:userId',authController.requireSignin,authController.isAuth,
 
 router.route('/user/:userId')
     .get(authController.requireSignin,authController.isAuth, userController.getReadUser)
+    .put(authController.requireSignin,authController.isAuth, userController.putUpdateUser)
 
 router.param('userId', userController.userByID)
 

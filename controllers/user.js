@@ -17,5 +17,10 @@ exports.userByID = (req,res,next, id) =>{
 
 //read user data
 exports.getReadUser = (req,res,next) =>{
+
+}
+
+//update user
+exports.putUpdateUser = (req,res,next) =>{
     
 }
