@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const expreesValidator = require('express-validator');
+const  cors = require('cors');
 require('dotenv').config();
 
 //app
@@ -30,6 +31,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 app.use(cookieParser());
 app.use(expreesValidator());
+app.use(cors());
 
 
 //routing
