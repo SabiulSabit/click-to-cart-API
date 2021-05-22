@@ -11,6 +11,10 @@ router.get('/secret/:userId',authController.requireSignin,authController.isAuth,
         user: req.profile
     })
 })
+
+router.route('/user/:userId')
+    .get(authController.requireSignin,authController.isAuth, userController.getReadUser)
+
 router.param('userId', userController.userByID)
 
 module.exports = router;    

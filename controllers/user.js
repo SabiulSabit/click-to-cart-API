@@ -13,3 +13,9 @@ exports.userByID = (req,res,next, id) =>{
         next();
     } )
 }
+
+
+//read user data
+exports.getReadUser = (req,res,next) =>{
+    
+}
