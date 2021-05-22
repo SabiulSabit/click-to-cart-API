@@ -1,30 +1,44 @@
-const User = require('../models/user.js');
+const User = require("../models/user.js");
 
 //find user by id
-exports.userByID = (req,res,next, id) =>{
-    User.findById(id).exec( (err,user) =>{
-        if(err || !user){
-            return res.status(400).json({
-                error: "User not Found"
-            })
-        }
+exports.userByID = (req, res, next, id) => {
+  User.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User not Found",
+      });
+    }
 
-        req.profile = user;
-        next();
-    } )
-}
-
+    req.profile = user;
+    next();
+  });
+};
 
 //read user data
-exports.getReadUser = (req,res,next) =>{
-     req.profile.hashPassword = undefined;
-     req.profile.salt = undefined;
+exports.getReadUser = (req, res, next) => {
+  req.profile.hashPassword = undefined;
+  req.profile.salt = undefined;
 
-     return res.json(req.profile);
-
-}
+  return res.json(req.profile);
+};
 
 //update user
-exports.putUpdateUser = (req,res,next) =>{
-
-}
+exports.putUpdateUser = (req, res, next) => {
+  User.findOneAndUpdate(
+    { _id: req.profile._id },
+    {
+      $set: req.body,
+    },
+    { new: true },
+    (err, user) => {
+      if (err) {
+        return res.status(400).json({
+          error: "You are not apllicable to perform this action",
+        });
+      }
+      user.hashPassword = undefined;
+      user.salt = undefined;
+      return res.json(user);
+    }
+  );
+};
