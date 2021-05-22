@@ -43,6 +43,9 @@ router.route("/products/categories").get(productController.allCategory);
 
 router.route("/products/by/search").post(productController.searchData);
 
+router.route("/product/photo/:productId")
+     .get(productController.getPhoto)
+
 router.param("userId", userController.userByID);
 router.param("productId", productController.productByID);
 
