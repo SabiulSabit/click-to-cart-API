@@ -242,7 +242,9 @@ exports.searchData = (req, res, next) => {
     });
 };
 
-
+exports.querySearchData = (req,res,next) => {
+  
+}
 
 //get product photo
 exports.getPhoto = (req,res,next) =>{

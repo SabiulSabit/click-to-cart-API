@@ -42,6 +42,8 @@ router.route("/products/related/:productId").get(productController.listRelated);
 router.route("/products/categories").get(productController.allCategory);
 
 router.route("/products/by/search").post(productController.searchData);
+router.route("/products/search").get(productController.querySearchData);
+
 
 router.route("/product/photo/:productId")
      .get(productController.getPhoto)
