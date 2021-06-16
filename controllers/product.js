@@ -243,7 +243,25 @@ exports.searchData = (req, res, next) => {
 };
 
 exports.querySearchData = (req,res,next) => {
-  
+    
+   const query = {}
+
+   if(req.query.search){
+      query.name = {$regex: req.query.search, $options: 'i'};
+      if(req.query.category &&  req.query.category != 'All'){
+        query.category = req.query.categor;
+      }
+      Product.find(query, (err,result)=>{
+        if(err){
+          return res.status(400).json({
+            error: errorHandler(err)
+          })
+        }else{
+          return res.json(result);
+        }
+      }).select('-photo');
+   }
+
 }
 
 //get product photo
