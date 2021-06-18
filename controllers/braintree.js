@@ -23,5 +23,20 @@ exports.generateToken = (req,res,next) =>{
 
 //process the payment
 exports.postProcessPayment =(req,res,next) =>{
-    
+    let nonceFromTheClient = req.body.paymentMethodNonce;
+    let amoutFromTheClient = req.body.amount;
+
+    let newTransaction = gateway.transaction.sale({
+        amount: amoutFromTheClient,
+        paymentMethodNonce: nonceFromTheClient,
+        options: {
+            submitForSettlement: true,
+        }
+    }, (err, result) => {
+            if(err){
+                return res.status(500).json(err);
+            }else{
+                return res.json(result);
+            }
+    })
 }
