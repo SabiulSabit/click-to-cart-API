@@ -8,6 +8,8 @@ const braintreeController = require('../controllers/braintree');
 
 router.get('/braintree/getToken/:userId',authController.requireSignin, authController.isAuth,braintreeController.generateToken  )
 
+router.post('/braintree/payment/:userId',authController.requireSignin, authController.isAuth,braintreeController.postProcessPayment  )
+
 
 router.param('userId', userController.userByID);
 

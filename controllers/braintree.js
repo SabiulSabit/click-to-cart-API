@@ -9,6 +9,7 @@ const gateway = new braintree.BraintreeGateway({
    privateKey: process.env.BRAINTREE_PRIVATE_KEY,
 })
 
+//generate the token
 exports.generateToken = (req,res,next) =>{
     gateway.clientToken.generate({}, (err, response) => {
         if(err){
@@ -18,4 +19,9 @@ exports.generateToken = (req,res,next) =>{
             res.send(response);
         }
     })
+}
+
+//process the payment
+exports.postProcessPayment =(req,res,next) =>{
+    
 }
