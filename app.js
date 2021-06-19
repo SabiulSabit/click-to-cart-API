@@ -15,6 +15,7 @@ const userRouter = require('./routes/user')
 const categoryRouter = require('./routes/category')
 const productRouter = require('./routes/product')
 const braintreeRouter = require('./routes/braintree')
+const orderRouter = require('./routes/order')
 
 //connect to db
 mongoose.connect(process.env.DATABASE, {
@@ -37,10 +38,12 @@ app.use(cors());
 
 //routing
 app.use('/api', authRouter);
-app.use('/api', userRouter)
+app.use('/api', userRouter);
 app.use('/api', categoryRouter);
 app.use('/api',productRouter);
 app.use('/api',braintreeRouter);
+app.use('/api',orderRouter);
+
 
 //run
 const port = process.env.PORT || 8000 ;
