@@ -1,3 +1,4 @@
+const { rawListeners } = require("../models/user.js");
 const User = require("../models/user.js");
 
 //find user by id
@@ -47,4 +48,26 @@ exports.putUpdateUser = (req, res, next) => {
 //add order to history
 exports.addOrderToHistory = (req,res,next) =>{
   //next()
+  let history = [];
+  raq.body.order.products.forEach((item)=>{
+    history.push({
+      id: item._id,
+      name: item.name,
+      description: item.description,
+      category: item.category,
+      quantity: item.count,
+      transaction_id: req.body.order.transaction_id,
+      amount: req.body.order.amount
+    });
+  })
+  
+  User.findOneAndUpdate({_id: req.profile._id}, {$push: {history: history}}, {new: true}, (err, data)=>{
+    if(err){
+      return res.status(400).json({
+        error: "Can't Update The User History"
+      })
+    }else{
+      next();
+    }
+  })
 }
