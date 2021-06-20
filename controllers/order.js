@@ -1,6 +1,25 @@
 const { Order, CartItem } = require("../models/order");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
+
+//get order by id
+exports.orderByID = (req,res,next, id) => {
+   Order.findById(id)
+   .populate('products.prodcut', "name price")
+   .exec( (err, result) =>{
+      if(err || !result){
+        return res.status(400).json({
+          error: errorHandler(err),
+        });
+      }
+      else{
+        req.order = result;
+        next();
+      }
+   } )
+   
+}
+
 //create new order
 exports.postCreatOrder = (req, res, next) => {
   req.body.order.user = req.profile;
@@ -40,4 +59,9 @@ exports.listOrder = (req, res, next) => {
 //get order status value
 exports.getStatusValues = (req,res,next) =>{
   return res.json(Order.schema.path('status').enumValues);
+}
+
+//update order status
+exports.updateOrderStatus = (req,res,next) =>  {
+
 }
