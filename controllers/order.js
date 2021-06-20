@@ -35,3 +35,9 @@ exports.listOrder = (req, res, next) => {
       }
     });
 };
+
+
+//get order status value
+exports.getStatusValues = (req,res,next) =>{
+  
+}
