@@ -49,7 +49,7 @@ exports.putUpdateUser = (req, res, next) => {
 exports.addOrderToHistory = (req,res,next) =>{
   //next()
   let history = [];
-  raq.body.order.products.forEach((item)=>{
+  req.body.order.products.forEach((item)=>{
     history.push({
       id: item._id,
       name: item.name,

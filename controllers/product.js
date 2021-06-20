@@ -273,3 +273,8 @@ exports.getPhoto = (req,res,next) =>{
     next();
   }
 }
+
+//decrease the quantity after a order
+exports.decreaseQnt = (req,res,next) =>{
+  
+}
