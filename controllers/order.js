@@ -18,3 +18,8 @@ exports.postCreatOrder = (req,res, next) => {
     }
   })
 }
+
+//get all order list for admin
+exports.listOrder = (req,res,next) =>{
+
+}

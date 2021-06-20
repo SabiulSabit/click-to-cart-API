@@ -8,6 +8,7 @@ const orderController = require('../controllers/order');
 const productController = require('../controllers/product'); 
 
 router.post('/order/create/:userId', authController.requireSignin, authController.isAuth, userController.addOrderToHistory,productController.decreaseQnt, orderController.postCreatOrder)
+router.get('/order/list/:userId',authController.requireSignin, authController.isAuth, authController.isAdmin, orderController.listOrder )
 
 router.param('userId', userController.userByID);
 
