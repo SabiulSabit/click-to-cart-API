@@ -30,7 +30,7 @@ exports.listOrder = (req, res, next) => {
           error: errorHandler(err),
         });
       } else {
-        console.log(order);
+        //console.log(order);
         return res.json(order);
       }
     });
