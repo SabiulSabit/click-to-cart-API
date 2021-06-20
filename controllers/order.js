@@ -20,6 +20,7 @@ exports.postCreatOrder = (req, res, next) => {
 
 //get all order list for admin
 exports.listOrder = (req, res, next) => {
+  //console.log(req.params.userId)
   Order.find()
     .populate("user", "_id name address")
     .sort("-created")
@@ -29,6 +30,7 @@ exports.listOrder = (req, res, next) => {
           error: errorHandler(err),
         });
       } else {
+        console.log(order);
         return res.json(order);
       }
     });
