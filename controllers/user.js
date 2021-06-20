@@ -42,3 +42,9 @@ exports.putUpdateUser = (req, res, next) => {
     }
   );
 };
+
+
+//add order to history
+exports.addOrderToHistory = (req,res,next) =>{
+  //next()
+}
