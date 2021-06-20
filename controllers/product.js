@@ -7,16 +7,18 @@ const { exec } = require("child_process");
 
 //get product by id
 exports.productByID = (req, res, next, id) => {
-  Product.findById(id).populate('category').exec((err, product) => {
-    if (err || !product) {
-      return res.status(400).json({
-        error: "Product not Found !",
-      });
-    }
+  Product.findById(id)
+    .populate("category")
+    .exec((err, product) => {
+      if (err || !product) {
+        return res.status(400).json({
+          error: "Product not Found !",
+        });
+      }
 
-    req.product = product;
-    next();
-  });
+      req.product = product;
+      next();
+    });
 };
 
 //get product
@@ -242,39 +244,54 @@ exports.searchData = (req, res, next) => {
     });
 };
 
-exports.querySearchData = (req,res,next) => {
-    
-   const query = {}
+exports.querySearchData = (req, res, next) => {
+  const query = {};
 
-   if(req.query.search){
-      query.name = {$regex: req.query.search, $options: 'i'};
-      if(req.query.category &&  req.query.category != 'All'){
-        query.category = req.query.categor;
+  if (req.query.search) {
+    query.name = { $regex: req.query.search, $options: "i" };
+    if (req.query.category && req.query.category != "All") {
+      query.category = req.query.categor;
+    }
+    Product.find(query, (err, result) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler(err),
+        });
+      } else {
+        return res.json(result);
       }
-      Product.find(query, (err,result)=>{
-        if(err){
-          return res.status(400).json({
-            error: errorHandler(err)
-          })
-        }else{
-          return res.json(result);
-        }
-      }).select('-photo');
-   }
-
-}
+    }).select("-photo");
+  }
+};
 
 //get product photo
-exports.getPhoto = (req,res,next) =>{
-  if(req.product.photo.data){
-    res.set('Content-Type', req.product.photo.contentType);
+exports.getPhoto = (req, res, next) => {
+  if (req.product.photo.data) {
+    res.set("Content-Type", req.product.photo.contentType);
     return res.send(req.product.photo.data);
 
     next();
   }
-}
+};
 
-//decrease the quantity after a order
-exports.decreaseQnt = (req,res,next) =>{
-  
-}
+//decrease the quantity after an order
+exports.decreaseQnt = (req, res, next) => {
+  let bulkOption = req.body.order.products.map((item) => {
+    return {
+      updateOne: {
+        filter: { _id: item._id },
+        update: { $inc: { quantity: -item.count, sold: +item.count } },
+      },
+    };
+  });
+
+  Product.bulkWrite(bulkOption, { }, (err, data)=>{
+      if(err){
+        return res.json({
+          error: "Can't update the product"
+        })
+      }else{
+        next();
+      }
+  })
+};
