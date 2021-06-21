@@ -16,6 +16,11 @@ router.route('/user/:userId')
     .get(authController.requireSignin,authController.isAuth, userController.getReadUser)
     .put(authController.requireSignin,authController.isAuth, userController.putUpdateUser)
 
+router.get('/orders/by/user/:userId',authController.requireSignin,authController.isAuth, userController.orderHistory)
+
+
+
+
 router.param('userId', userController.userByID)
 
 module.exports = router;    

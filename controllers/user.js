@@ -71,3 +71,9 @@ exports.addOrderToHistory = (req,res,next) =>{
     }
   })
 }
+
+
+//get user order history
+exports.orderHistory = (req,res,next) => {
+  
+}
