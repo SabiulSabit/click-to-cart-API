@@ -96,6 +96,7 @@ exports.remove = (req, res, next) => {
 
 //update product
 exports.update = (req, res, next) => {
+
   let form = new formidable.IncomingForm();
 
   form.keepExtensions = true;
@@ -107,24 +108,12 @@ exports.update = (req, res, next) => {
       });
     }
 
-    const { name, description, price, category, quantity, shipping } = fields;
-    if (
-      !name ||
-      !description ||
-      !price ||
-      !category ||
-      !quantity ||
-      !shipping
-    ) {
-      return res.status(400).json({
-        error: "All Fields are Required",
-      });
-    }
-
     let product = req.product;
     product = _.extend(product, fields);
-
-    if (files.photo) {
+   
+    //console.log(files.photo);
+    if (files.photo.size>0) {
+     // console.log("oohot")
       if (files.photo.size > 1000000) {
         return res.status(400).json({
           error: "Image Should be less than 1MB",
