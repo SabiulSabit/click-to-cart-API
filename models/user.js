@@ -39,32 +39,32 @@ const userSchema = new mongoose.Schema(
 
 
 //virtual field
-userSchema.virtual('password') 
-.set(function(password){
+userSchema.virtual('password')
+  .set(function (password) {
     this._password = password
     this.salt = uuidv1.v1();
-    this.hashPassword =  this.encryptPassword(password) 
-})
-.get(function(){
+    this.hashPassword = this.encryptPassword(password)
+  })
+  .get(function () {
     return this._password
-})
+  })
 
 
 //add Methods
 userSchema.methods = {
-     
-    authenticate: function (plainText){
-        return this.encryptPassword(plainText) === this.hashPassword; 
-    },
 
-    encryptPassword: function(password){
-        if(!password) return '';
-        try{
-            return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
-        }catch(err){
-            return '';
-        }
+  authenticate: function (plainText) {
+    return this.encryptPassword(plainText) === this.hashPassword;
+  },
+
+  encryptPassword: function (password) {
+    if (!password) return '';
+    try {
+      return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
+    } catch (err) {
+      return '';
     }
+  }
 }
 
 module.exports = mongoose.model('User', userSchema);

@@ -110,10 +110,10 @@ exports.update = (req, res, next) => {
 
     let product = req.product;
     product = _.extend(product, fields);
-   
+
     //console.log(files.photo);
-    if (files.photo.size>0) {
-     // console.log("oohot")
+    if (files.photo.size > 0) {
+      // console.log("oohot")
       if (files.photo.size > 1000000) {
         return res.status(400).json({
           error: "Image Should be less than 1MB",
@@ -233,6 +233,7 @@ exports.searchData = (req, res, next) => {
     });
 };
 
+//search product
 exports.querySearchData = (req, res, next) => {
   const query = {};
 
@@ -274,13 +275,13 @@ exports.decreaseQnt = (req, res, next) => {
     };
   });
 
-  Product.bulkWrite(bulkOption, { }, (err, data)=>{
-      if(err){
-        return res.json({
-          error: "Can't update the product"
-        })
-      }else{
-        next();
-      }
+  Product.bulkWrite(bulkOption, {}, (err, data) => {
+    if (err) {
+      return res.json({
+        error: "Can't update the product"
+      })
+    } else {
+      next();
+    }
   })
 };

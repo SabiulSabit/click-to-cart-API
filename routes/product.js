@@ -46,7 +46,7 @@ router.route("/products/search").get(productController.querySearchData);
 
 
 router.route("/product/photo/:productId")
-     .get(productController.getPhoto)
+  .get(productController.getPhoto)
 
 router.param("userId", userController.userByID);
 router.param("productId", productController.productByID);
