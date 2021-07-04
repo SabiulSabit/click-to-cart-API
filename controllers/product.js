@@ -236,11 +236,11 @@ exports.searchData = (req, res, next) => {
 //search product
 exports.querySearchData = (req, res, next) => {
   const query = {};
-
+  // console.log(req.query.category)
   if (req.query.search) {
     query.name = { $regex: req.query.search, $options: "i" };
     if (req.query.category && req.query.category != "All") {
-      query.category = req.query.categor;
+      query.category = req.query.category;
     }
     Product.find(query, (err, result) => {
       if (err) {
