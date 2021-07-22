@@ -260,7 +260,6 @@ exports.getPhoto = (req, res, next) => {
     res.set("Content-Type", req.product.photo.contentType);
     return res.send(req.product.photo.data);
 
-    next();
   }
 };
 
