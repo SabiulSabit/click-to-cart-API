@@ -1,5 +1,5 @@
 const { errorHandler } = require("../helpers/dbErrorHandler.js");
-const { rawListeners } = require("../models/user.js");
+const { rawListeners } = require("../models/User.js");
 const User = require("../models/user.js");
 const { Order } = require("../models/order");
 

@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/User');
 const braintree = require('braintree');
 require('dotenv').config();
 
