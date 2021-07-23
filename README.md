@@ -4,8 +4,24 @@
   
  ## Get The Front-End Code for this API: https://github.com/SabiulSabit/click-to-cart-UI
  
- # How to run this project locally? 
+ # Technology Used
+    * Node.js
+    * Express.js
+    * MongoDB
+    * JWT
+    * Braintree etc.
  
+ # Available Features
+ 
+    1. User Authentication 
+    2. CURD Category {Admin} 
+    3. CURD Product {Admin} 
+    4. Order Placement 
+    5. Payment Gateway etc.
+ 
+ # How to run this project locally? 
+  
+  Download this Repo and inside the download file,
   Create a `.env` file. Then add
   
   ```
